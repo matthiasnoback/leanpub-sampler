@@ -23,5 +23,5 @@
             "Matthias\\LeanpubSampler": "src/"
         }
     },
-    "bin": ["generate-sample.php"]
+    "bin": ["bin/generate-sample.php"]
 }
