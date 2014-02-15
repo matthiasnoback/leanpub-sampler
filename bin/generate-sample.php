@@ -12,7 +12,7 @@ if ($autoloadFile === null) {
     throw new \RuntimeException('Could not locate the Composer autoload file');
 }
 
-require $autoloadFile[0];
+require reset($autoloadFile);
 
 $cliFactory = new CliFactory();
 $context = $cliFactory->newContext($GLOBALS);
