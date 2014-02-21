@@ -15,6 +15,7 @@ class ManuscriptLines implements \RecursiveIterator
 
     public function current()
     {
+        return $this->fileIterator->current();
     }
 
     public function next()
@@ -24,6 +25,7 @@ class ManuscriptLines implements \RecursiveIterator
 
     public function key()
     {
+        return $this->fileIterator->key();
     }
 
     public function valid()
@@ -43,6 +45,6 @@ class ManuscriptLines implements \RecursiveIterator
 
     public function getChildren()
     {
-        return $this->iteratorFactory->createForFile($this->fileIterator->current());
+        return $this->iteratorFactory->createForFile($this->current());
     }
 }
