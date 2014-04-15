@@ -18,11 +18,17 @@ class SampleTextLinesTest extends \PHPUnit_Framework_TestCase
         $this->assertLinesReturnedByIteratorEqual(
             array(
                 '-# Part 1',
+                '',
                 '# Chapter 1',
+                '',
                 '## Section 1',
+                '',
                 '-# Part 2',
+                '',
                 '# Chapter 2',
+                '',
                 '## Section 2',
+                '',
             ),
             $sampleTextIterator
         );

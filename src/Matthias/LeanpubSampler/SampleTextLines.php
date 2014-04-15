@@ -10,6 +10,7 @@ class SampleTextLines extends \FilterIterator implements \RecursiveIterator
     private $line;
     private $isSampleText;
     private $addAllSectionMarkers;
+    private $previousLineWasSectionMarker;
 
     public function __construct(\Traversable $lines, $addAllSectionMarkers = true)
     {
@@ -38,8 +39,18 @@ class SampleTextLines extends \FilterIterator implements \RecursiveIterator
             return true;
         }
 
-        if ($this->addAllSectionMarkers && $this->lineIsSectionMarker($currentLine)) {
-            return true;
+        if ($this->addAllSectionMarkers) {
+            if ($this->lineIsSectionMarker($currentLine)) {
+                $this->previousLineWasSectionMarker = true;
+
+                return true;
+            }
+
+            if ($this->previousLineWasSectionMarker) {
+                $this->previousLineWasSectionMarker = false;
+
+                return true;
+            }
         }
 
         return false;

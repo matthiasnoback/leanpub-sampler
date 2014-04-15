@@ -30,15 +30,22 @@ class SampleTextFileGeneratorTest extends \PHPUnit_Framework_TestCase
 
         $expected = <<<EOD
 -# Part 1
+
 # Chapter 1
+
 # Chapter 2
+
 -# Part 2
+
+
 # Chapter 3
 
 Sample text
+
 # Chapter 4
 
 More sample text
+
 
 EOD;
 
@@ -54,12 +61,15 @@ EOD;
         $generator->generate();
 
         $expected = <<<EOD
+
 # Chapter 3
 
 Sample text
+
 # Chapter 4
 
 More sample text
+
 
 EOD;
 
