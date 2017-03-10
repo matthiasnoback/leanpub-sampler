@@ -12,8 +12,7 @@
         }
     ],
     "require": {
-        "symfony/finder": "2.*",
-        "aura/cli": "2.*@dev"
+        "aura/cli": "2.*"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7"

@@ -2,8 +2,6 @@
 
 namespace Matthias\LeanpubSampler;
 
-use Symfony\Component\Finder\Finder;
-
 class SampleTextFileGenerator
 {
     private $manuscriptDirectory;
