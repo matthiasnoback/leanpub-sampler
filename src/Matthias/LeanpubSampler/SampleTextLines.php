@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler;
 
-class SampleTextLines extends \FilterIterator implements \RecursiveIterator
+final class SampleTextLines extends \FilterIterator implements \RecursiveIterator
 {
     const BEGIN_SAMPLE_MARKER = '%% begin sample';
     const END_SAMPLE_MARKER = '%% end sample';
@@ -12,14 +13,14 @@ class SampleTextLines extends \FilterIterator implements \RecursiveIterator
     private $addAllSectionMarkers;
     private $previousLineWasSectionMarker;
 
-    public function __construct(\Traversable $lines, $addAllSectionMarkers = true)
+    public function __construct(\Traversable $lines, bool $addAllSectionMarkers = true)
     {
         $this->addAllSectionMarkers = $addAllSectionMarkers;
 
         parent::__construct(new \IteratorIterator($lines));
     }
 
-    public function accept()
+    public function accept(): bool
     {
         $currentLine = parent::current();
 
@@ -56,34 +57,34 @@ class SampleTextLines extends \FilterIterator implements \RecursiveIterator
         return false;
     }
 
-    public function key()
+    public function key(): int
     {
         return $this->line;
     }
 
-    public function next()
+    public function next(): void
     {
         parent::next();
         $this->line++;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         parent::rewind();
         $this->line = 0;
     }
 
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return false;
     }
 
-    public function getChildren()
+    public function getChildren(): \Iterator
     {
-        return false;
+        throw new \LogicException('Not implemented');
     }
 
-    private function lineIsSectionMarker($line)
+    private function lineIsSectionMarker(string $line): bool
     {
         if (substr($line, 0, 1) === '#') {
             // regular chapter, section, subsection, etc.

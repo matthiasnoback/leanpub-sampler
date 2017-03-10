@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler;
 
-class FileLineWriter
+final class FileLineWriter
 {
     private $file;
 
@@ -11,12 +12,12 @@ class FileLineWriter
         $this->file = $file;
     }
 
-    public function writeLines(\Traversable $lines)
+    public function writeLines(\Traversable $lines): void
     {
         $handle = fopen($this->file, 'w+');
 
         foreach ($lines as $line) {
-            fputs($handle, $line."\n");
+            fputs($handle, $line . "\n");
         }
 
         fclose($handle);

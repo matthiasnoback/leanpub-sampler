@@ -1,11 +1,13 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler\Tests;
 
 use Matthias\LeanpubSampler\FileLines;
 use Matthias\LeanpubSampler\SampleTextLines;
+use PHPUnit\Framework\TestCase;
 
-class SampleTextLinesTest extends \PHPUnit_Framework_TestCase
+class SampleTextLinesTest extends TestCase
 {
     /**
      * @test

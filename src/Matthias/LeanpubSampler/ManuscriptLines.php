@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler;
 
-class ManuscriptLines implements \RecursiveIterator
+final class ManuscriptLines implements \RecursiveIterator
 {
     private $fileIterator;
     private $iteratorFactory;
@@ -13,37 +14,37 @@ class ManuscriptLines implements \RecursiveIterator
         $this->iteratorFactory = $iteratorFactory;
     }
 
-    public function current()
+    public function current(): string
     {
         return $this->fileIterator->current();
     }
 
-    public function next()
+    public function next(): void
     {
         $this->fileIterator->next();
     }
 
-    public function key()
+    public function key(): int
     {
         return $this->fileIterator->key();
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->fileIterator->valid();
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->fileIterator->rewind();
     }
 
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return true;
     }
 
-    public function getChildren()
+    public function getChildren(): \Iterator
     {
         return $this->iteratorFactory->createForFile($this->current());
     }

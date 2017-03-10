@@ -1,10 +1,12 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler\Tests;
 
 use Matthias\LeanpubSampler\SampleTextFileGenerator;
+use PHPUnit\Framework\TestCase;
 
-class SampleTextFileGeneratorTest extends \PHPUnit_Framework_TestCase
+class SampleTextFileGeneratorTest extends TestCase
 {
     private $file;
     private $manuscriptDirectory;
@@ -12,7 +14,7 @@ class SampleTextFileGeneratorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->file = tempnam(sys_get_temp_dir(), 'SampleTextFileGeneratorTest');
-        $this->manuscriptDirectory = __DIR__.'/fixtures/manuscript';
+        $this->manuscriptDirectory = __DIR__ . '/fixtures/manuscript';
     }
 
     protected function tearDown()

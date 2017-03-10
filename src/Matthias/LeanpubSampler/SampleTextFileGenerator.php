@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler;
 
-class SampleTextFileGenerator
+final class SampleTextFileGenerator
 {
     private $manuscriptDirectory;
     private $filename;
@@ -18,7 +19,7 @@ class SampleTextFileGenerator
         $this->addAllSectionMarkers = $addAllSectionMarkers;
     }
 
-    public function generate()
+    public function generate() : void
     {
         $fileTraversable = $this->createFileTraversable();
 
@@ -35,7 +36,7 @@ class SampleTextFileGenerator
         $writer->writeLines($manuscriptLines);
     }
 
-    protected function createFileTraversable()
+    protected function createFileTraversable() : \Traversable
     {
         $bookTxtLines = array_filter(
             file($this->manuscriptDirectory . '/Book.txt', FILE_IGNORE_NEW_LINES),

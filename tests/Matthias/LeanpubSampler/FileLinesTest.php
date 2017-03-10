@@ -1,17 +1,19 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler\Tests;
 
 use Matthias\LeanpubSampler\FileLines;
+use PHPUnit\Framework\TestCase;
 
-class FileLinesTest extends \PHPUnit_Framework_TestCase
+class FileLinesTest extends TestCase
 {
     /**
      * @test
      */
     public function it_reads_lines_from_a_file_and_trims_new_line_characters()
     {
-        $iterator = new FileLines(__DIR__.'/fixtures/text.txt');
+        $iterator = new FileLines(__DIR__ . '/fixtures/text.txt');
 
         $expected = array(
             '# Chapter 1',

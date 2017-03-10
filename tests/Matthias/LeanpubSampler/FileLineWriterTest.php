@@ -1,10 +1,12 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler\Tests;
 
 use Matthias\LeanpubSampler\FileLineWriter;
+use PHPUnit\Framework\TestCase;
 
-class FileLineWriterTest extends \PHPUnit_Framework_TestCase
+class FileLineWriterTest extends TestCase
 {
     private $filename;
 
@@ -29,7 +31,7 @@ class FileLineWriterTest extends \PHPUnit_Framework_TestCase
      */
     public function it_writes_all_values_from_an_iterator_to_a_file_as_lines()
     {
-       $lines = new \ArrayIterator(array(
+        $lines = new \ArrayIterator(array(
             'Line 1',
             'Line 2',
             ''

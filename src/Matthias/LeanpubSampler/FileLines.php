@@ -1,8 +1,9 @@
 <?php
+declare(strict_types = 1);
 
 namespace Matthias\LeanpubSampler;
 
-class FileLines implements \Iterator
+final class FileLines implements \Iterator
 {
     private $line;
     private $handle;
@@ -12,27 +13,27 @@ class FileLines implements \Iterator
         $this->handle = fopen($file, 'r');
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return !feof($this->handle);
     }
 
-    public function next()
+    public function next(): void
     {
         $this->line++;
     }
 
-    public function current()
+    public function current(): string
     {
-        return rtrim(fgets($this->handle), "\n");
+        return rtrim((string)fgets($this->handle), "\n");
     }
 
-    public function key()
+    public function key(): int
     {
         return $this->line;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->line = 0;
         fseek($this->handle, 0);
