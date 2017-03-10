@@ -39,11 +39,16 @@ class SampleTextFileGenerator
 
     protected function createFileTraversable()
     {
-        return Finder::create()
-            ->in($this->manuscriptDirectory)
-            ->files()
-            ->name('*.md')->name('*.txt')
-            ->notName(basename($this->filename))
-            ->sortByName();
+        $bookTxtLines = array_filter(
+            file($this->manuscriptDirectory . '/Book.txt', FILE_IGNORE_NEW_LINES),
+            function ($line) {
+                return trim($line) !== '';
+            }
+        );
+        $manuscriptFiles = array_map(function($relativePath) {
+            return $this->manuscriptDirectory . '/' . $relativePath;
+        }, $bookTxtLines);
+
+        return new \ArrayIterator($manuscriptFiles);
     }
 }
