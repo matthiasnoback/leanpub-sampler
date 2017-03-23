@@ -8,15 +8,21 @@ final class SampleTextFileGenerator
     private $manuscriptDirectory;
     private $filename;
     private $addAllSectionMarkers;
+    /**
+     * @var bool
+     */
+    private $fromSubset;
 
     public function __construct(
-        $manuscriptDirectory,
-        $filename,
-        $addAllSectionMarkers
+        string $manuscriptDirectory,
+        bool $fromSubset,
+        string $filename,
+        bool $addAllSectionMarkers
     ) {
         $this->manuscriptDirectory = $manuscriptDirectory;
         $this->filename = $filename;
         $this->addAllSectionMarkers = $addAllSectionMarkers;
+        $this->fromSubset = $fromSubset;
     }
 
     public function generate() : void
@@ -38,8 +44,13 @@ final class SampleTextFileGenerator
 
     protected function createFileTraversable() : \Traversable
     {
+        $includeManuscriptFilesFrom = rtrim($this->manuscriptDirectory, '/') . '/' . ($this->fromSubset ? 'Subset.txt' : 'Book.txt');
+        if (!is_file($includeManuscriptFilesFrom)) {
+            throw new \RuntimeException('File not found: ' . $includeManuscriptFilesFrom);
+        }
+
         $bookTxtLines = array_filter(
-            file($this->manuscriptDirectory . '/Book.txt', FILE_IGNORE_NEW_LINES),
+            file($includeManuscriptFilesFrom, FILE_IGNORE_NEW_LINES),
             function ($line) {
                 return trim($line) !== '';
             }

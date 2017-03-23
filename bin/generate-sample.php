@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 use Aura\Cli\CliFactory;
 use Matthias\LeanpubSampler\SampleTextFileGenerator;
@@ -21,21 +22,25 @@ $stdio = $cliFactory->newStdio();
 $options = array(
     'dir:',
     'file:',
+    'from-subset',
     'all-sections,s'
 );
 
 $getopt = $context->getopt($options);
 
-$manuscriptDirectory = $getopt->get('--dir', 'manuscript/');
-$stdio->outln('Look for manuscript files in: <<yellow>>'.$manuscriptDirectory.'<<reset>>');
+$manuscriptDirectory = (string)$getopt->get('--dir', 'manuscript');
+$stdio->outln('Look for manuscript files in: <<yellow>>' . $manuscriptDirectory . '<<reset>>');
 
-$file = $getopt->get('--file', 'manuscript/sample-text.txt');
-$stdio->outln('Write sample text to: <<yellow>>'.$file.'<<reset>>');
+$file = (string)$getopt->get('--file', 'manuscript/sample-text.txt');
+$stdio->outln('Write sample text to: <<yellow>>' . $file . '<<reset>>');
 
-$addAllSectionMarkers = $getopt->get('--all-sections');
-$stdio->outln('Add all section markers? <<yellow>>'.($addAllSectionMarkers ? 'yes': 'no').'<<reset>>');
+$addAllSectionMarkers = (bool)$getopt->get('--all-sections');
+$stdio->outln('Add all section markers? <<yellow>>' . ($addAllSectionMarkers ? 'yes' : 'no') . '<<reset>>');
 
-$sampleTextFileGenerator = new SampleTextFileGenerator($manuscriptDirectory, $file, $addAllSectionMarkers);
+$fromSubset = (bool)$getopt->get('--from-subset');
+$stdio->outln('Base sample text on Subset.txt? <<yellow>>' . ($fromSubset ? 'yes' : 'no') . '<<reset>>');
+
+$sampleTextFileGenerator = new SampleTextFileGenerator($manuscriptDirectory, $fromSubset, $file, $addAllSectionMarkers);
 $sampleTextFileGenerator->generate();
 
 $stdio->outln('<<green>>Done!<<reset>>');

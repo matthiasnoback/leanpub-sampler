@@ -27,7 +27,7 @@ class SampleTextFileGeneratorTest extends TestCase
      */
     public function it_generates_one_sample_text_file_from_multiple_files_including_all_section_markers()
     {
-        $generator = new SampleTextFileGenerator($this->manuscriptDirectory, $this->file, true);
+        $generator = new SampleTextFileGenerator($this->manuscriptDirectory, false, $this->file, true);
         $generator->generate();
 
         $expected = <<<EOD
@@ -59,7 +59,7 @@ EOD;
      */
     public function it_generates_one_sample_text_file_from_multiple_files_without_all_section_markers()
     {
-        $generator = new SampleTextFileGenerator($this->manuscriptDirectory, $this->file, false);
+        $generator = new SampleTextFileGenerator($this->manuscriptDirectory, false, $this->file, false);
         $generator->generate();
 
         $expected = <<<EOD
