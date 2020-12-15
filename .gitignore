@@ -1,3 +1,5 @@
 /vendor/
 /composer.lock
 /manuscript/
+/.env
+/.phpunit.result.cache
