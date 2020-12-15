@@ -11,13 +11,13 @@ class SampleTextFileGeneratorTest extends TestCase
     private $file;
     private $manuscriptDirectory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->file = tempnam(sys_get_temp_dir(), 'SampleTextFileGeneratorTest');
         $this->manuscriptDirectory = __DIR__ . '/fixtures/manuscript';
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unlink($this->file);
     }

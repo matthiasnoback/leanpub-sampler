@@ -1,7 +1,5 @@
 # Leanpub Sampler
 
-[![Build Status](https://travis-ci.org/matthiasnoback/leanpub-sampler.png?branch=master)](https://travis-ci.org/matthiasnoback/leanpub-sampler)
-
 This tool can be used to generate sample text for Leanpub books.
 
 ## Installation

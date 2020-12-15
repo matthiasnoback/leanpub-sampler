@@ -15,13 +15,13 @@ class FileLineWriterTest extends TestCase
      */
     private $writer;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->filename = tempnam(sys_get_temp_dir(), 'FileLineWriterTest');
         $this->writer = new FileLineWriter($this->filename);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unlink($this->filename);
     }
